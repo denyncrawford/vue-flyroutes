@@ -1,14 +1,30 @@
 {
   "name": "vue-flyroutes",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "demo": "vue-cli-service demo",
+    "docs": "npm run docs:serve",
+    "docs:build": "vue-cli-service docs --mode build",
+    "docs:serve": "vue-cli-service docs --mode serve",
+    "prepublish": "vue-cli-service lint && vue-cli-service docs --mode build && vue-cli-service build",
+    "start": "vue-cli-service serve"
   },
+  "main": "dist/vue-flyroutes.common.js",
+  "module": "dist/vue-flyroutes.esm.js",
+  "unpkg": "dist/vue-flyroutes.umd.min.js",
+  "files": [
+    "dist/vue-flyroutes.common.js",
+    "dist/vue-flyroutes.umd.min.js",
+    "dist/vue-flyroutes.umd.js",
+    "dist/vue-flyroutes.esm.js",
+    "src"
+  ],
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11",
+    "gsap": "^3.2.6",
+    "lodash": "^4.17.15",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },
@@ -17,11 +33,15 @@
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-p11n": "~0.4.0",
+    "vue-template-compiler": "^2.6.11",
+    "vue": "^2.6.11"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "jsdelivr": "dist/vue-flyroutes.umd.min.js",
+  "sideeffects": false
 }

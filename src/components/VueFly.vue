@@ -1,0 +1,63 @@
+<template>
+  <div class="wrapper">
+    <slot/>
+  </div>
+</template>
+
+<script>
+  import _ from 'lodash';
+  export default {
+    name: "vue-fr",
+    updated() {
+      // console.log("updated");
+    },
+    mounted() {
+      var options = this.$vfr.options;
+      var transitions = this.$vfr.transitions;
+      this.$router.beforeEach((to, from, next) => {
+        let selected;
+        if (!transitions.length) return next();
+        var findFrom = _.filter(transitions, (tr) => {
+          if (tr.from) return from.name === tr.from || tr.from.includes(from.name)
+        });
+        var findTo = _.filter(findFrom, function(tr) {
+          if (tr.to) return to.name === tr.to || tr.to.includes(to.name)
+        });
+        var globalAn = _.filter(transitions, (tr) => {
+          return !tr.from && !tr.to;
+        })
+        if (!findTo.length && !globalAn.length) return next();
+        if (!findTo.length && globalAn.length) selected = globalAn;
+        if (findTo.length && !globalAn.length) selected = findTo;
+        if (findTo.length && globalAn.length) selected = findTo;
+        if (selected[0].leave) {
+          selected[0].leave(null, () => {
+            return next()
+          })
+        } else {
+          return next()
+        }
+      })
+      this.$router.afterEach((to, from) => {
+        let selected;
+        if (!transitions.length) return;
+        var findFrom = _.filter(transitions, (tr) => {
+          if (tr.from) return from.name === tr.from || tr.from.includes(from.name)
+        });
+        var findTo = _.filter(findFrom, function(tr) {
+          if (tr.to) return to.name === tr.to || tr.to.includes(to.name)
+        });
+        var globalAn = _.filter(transitions, (tr) => {
+          return !tr.from && !tr.to;
+        })
+        if (!findTo.length && !globalAn.length) return;
+        if (!findTo.length && globalAn.length) selected = globalAn;
+        if (findTo.length && !globalAn.length) selected = findTo;
+        if (findTo.length && globalAn.length) selected = findTo;
+        setTimeout(() => {
+          if (selected[0].enter) selected[0].enter()
+        },1)
+      })
+    }
+  }
+</script>

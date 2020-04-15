@@ -1,19 +1,5 @@
-# vue-flyroutes
+# Vue Fly Routes
 
-## Project setup
-```
-npm install
-```
+vue-flyrutes is a small and easy-to-use VueJS router plugin that helps you create fluid and smooth transitions between your website’s pages.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+It helps to control the transitions between your views, improves navigation on your site and enhance your users’ web experience.
