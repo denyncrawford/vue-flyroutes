@@ -43,5 +43,7 @@
     "not dead"
   ],
   "jsdelivr": "dist/vue-flyroutes.umd.min.js",
-  "sideeffects": false
+  "sideeffects": false,
+  "repository":"github:denyncrawford/vue-flyroutes",
+  "author": "Crawford."
 }
