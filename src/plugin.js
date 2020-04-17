@@ -2,19 +2,22 @@
 import Vue from 'vue'
 import VueFlyRoutes from './index'
 import {pageTransition, contentAnimation} from './transitions'
+import {delay} from './transitions/helpers.js'
 
 Vue.use(VueFlyRoutes, {
   transitions: [
     {
-      leave(data, done) {
+      async leave(data, done) {
         pageTransition();
-        setTimeout(() => {
-          done()
-        },1500)
+        await delay(1500)
+        done()
       },
       enter(data) {
-        contentAnimation();
+        contentAnimation(.29);
       },
+      once(data) {
+        contentAnimation(0);
+      }
     }
   ]
 })
