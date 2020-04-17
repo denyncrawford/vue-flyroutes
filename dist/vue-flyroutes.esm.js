@@ -1,6 +1,6 @@
 /*!
- * vue-flyroutes v0.1.0 
- * (c) 2020 
+ * vue-flyroutes v1.0.0 
+ * (c) 2020 Crawford.
  * Released under the undefined License.
  */
 import _ from 'lodash';
@@ -8,13 +8,19 @@ import _ from 'lodash';
 //
 var script = {
   name: "vue-fr",
-  updated: function updated() {// console.log("updated");
+  data: function data() {
+    return {
+      firstLoad: true
+    };
   },
   mounted: function mounted() {
+    var _this = this;
+
     var options = this.$vfr.options;
     var transitions = this.$vfr.transitions;
     this.$router.beforeEach(function (to, from, next) {
       var selected;
+      if (_this.firstLoad && from.name == null || _this.firstLoad && from.name == "/") return next();
       if (!transitions.length) return next();
 
       var findFrom = _.filter(transitions, function (tr) {
@@ -62,9 +68,22 @@ var script = {
       if (!findTo.length && globalAn.length) selected = globalAn;
       if (findTo.length && !globalAn.length) selected = findTo;
       if (findTo.length && globalAn.length) selected = findTo;
-      setTimeout(function () {
-        if (selected[0].enter) selected[0].enter();
-      }, 1);
+
+      if (_this.firstLoad && from.name == null || _this.firstLoad && from.name == "/") {
+        if (selected[0].once) {
+          _this.$nextTick().then(function () {
+            selected[0].once();
+            return _this.firstLoad = false;
+          });
+        }
+
+        return _this.firstLoad = false;
+      }
+
+      _this.$nextTick().then(function () {
+        selected[0].enter();
+        return _this.firstLoad = false;
+      });
     });
   }
 };
@@ -158,7 +177,7 @@ var normalizeComponent_1 = normalizeComponent;
 const __vue_script__ = script;
 
 /* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wrapper"},[_vm._t("default")],2)};
+var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-flyroutes-wrapper"},[_vm._t("default")],2)};
 var __vue_staticRenderFns__ = [];
 
   /* style */
@@ -186,7 +205,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '0.1.0';
+var version = '1.0.0';
 
 function install(Vue, opts) {
   if (!opts) opts = {

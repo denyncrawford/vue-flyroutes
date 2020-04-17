@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="vue-flyroutes-wrapper">
     <slot/>
   </div>
 </template>
@@ -18,7 +18,7 @@
       var transitions = this.$vfr.transitions;
       this.$router.beforeEach((to, from, next) => {
         let selected;
-        if (this.firstLoad && from.name == null || this.firstLoad && from.name == "") return next();
+        if (this.firstLoad && from.name == null || this.firstLoad && from.name == "/") return next();
         if (!transitions.length) return next();
         var findFrom = _.filter(transitions, (tr) => {
           if (tr.from) return from.name === tr.from || tr.from.includes(from.name)
@@ -57,13 +57,21 @@
         if (!findTo.length && globalAn.length) selected = globalAn;
         if (findTo.length && !globalAn.length) selected = findTo;
         if (findTo.length && globalAn.length) selected = findTo;
-        if (this.firstLoad && from.name == null || this.firstLoad && from.name == "") {
-          if (selected[0].once) {selected[0].once(); return this.firstLoad = false}
+        if (this.firstLoad && from.name == null || this.firstLoad && from.name == "/") {
+          if (selected[0].once) {
+            this.$nextTick()
+            .then(() => {
+              selected[0].once();
+              return this.firstLoad = false
+            })
+          }
           return this.firstLoad = false;
         }
-        setTimeout(() => {
-          if (selected[0].enter) selected[0].enter()
-        },1)
+        this.$nextTick()
+        .then(() => {
+          selected[0].enter();
+          return this.firstLoad = false
+        })
       })
     }
   }
