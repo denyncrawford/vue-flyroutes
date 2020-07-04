@@ -1,5 +1,5 @@
 /*!
- * vue-flyroutes v1.1.0 
+ * vue-flyroutes v1.1.1 
  * (c) 2020 Crawford.
  * Released under the undefined License.
  */
@@ -199,7 +199,7 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '1.1.0';
+var version = '1.1.1';
 
 function install(Vue, opts) {
   if (!opts) opts = {

@@ -1,6 +1,6 @@
 {
   "name": "vue-flyroutes",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Crawford.",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -46,6 +46,15 @@
     "> 1%",
     "last 2 versions",
     "not dead"
+  ],
+  "keywords": [
+    "vue",
+    "vuer-outer",
+    "animation",
+    "transition",
+    "transitions",
+    "route",
+    "barba"
   ],
   "jsdelivr": "dist/vue-flyroutes.umd.min.js",
   "repository": "github:denyncrawford/vue-flyroutes",

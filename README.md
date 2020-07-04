@@ -1,8 +1,10 @@
 # Intro
 
-Vue Fly Routes is a small and easy-to-use VueJS router plugin that helps you create fluid and smooth transitions between your website’s pages.
+Vue Fly Routes is a small and easy-to-use VueJS router plugin that helps you create fluid and smooth transitions between your website’s pages. 
 
-It helps to control the transitions between your views, improves navigation on your site and enhance your users' web experience.
+It helps to control the transitions between your views, improves your site navigation and enhance your users' web experience.
+
+**Inspired by [Barba.js](https://barba.js.org/), with all the power of Vue.**
 
 ### Demo
 
@@ -119,6 +121,8 @@ A basic transition is made of a `leave` animation, that is executed when leaving
 
 > **Note**: This animations will be triggered on all your pages.
 
+**You must see** the [Advanced transitioning](/#atp) props.
+
 ## Animation
 
 The important part for a good transition is animation. As VFS is not an animation plugin, you will need to import one in order to animate elements on the interface to create your transition.
@@ -131,6 +135,31 @@ There is a lot of javascript animation libraries on the web, here is a good star
 - [mojs](https://mojs.github.io/) — the motion graphics toolbelt for the web
 - [spirit](https://spiritjs.io/) — the ultimate tool to create high-quality animations directly in the browser
 
-> **Note**: VFS is currently only capable of transitioning with direct DOM manipulation. Soon will be available the data object in each lifecycle hook, that contains the element that is called through the :fly-target prop.
+For the demonstration, here is a basic **opacity transition** with **animejs** that consist of making the current page transparent, while the next page become opaque:
 
-**You must see** the [Advanced transitioning](/#atp) props.
+    Vue.use(VueFlyRoutes, {
+      transitions: [
+        {
+          name: 'animejs',
+          async leave(done) {
+            await anime({
+              targets: '.content',
+              delay: 1000,
+              opacity: [0, 1],
+              duration: 2000,
+            }).finished;
+            done()
+          },
+          enter() {
+            anime({
+              targets: '.content',
+              delay: 0,
+              opacity: [1, 0],
+              duration: 2000,
+            }).finished;
+          }
+        }
+      ]
+    })
+
+> **Note**: VFS is currently only capable of transitioning with direct DOM manipulation. Soon will be available the data object in each lifecycle hook, that contains the element that is called through the :fly-trantision prop, also the data object contains the data of the whole transition.
