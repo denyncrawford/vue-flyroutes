@@ -121,7 +121,7 @@ A basic transition is made of a `leave` animation, that is executed when leaving
 
 > **Note**: This animations will be triggered on all your pages.
 
-**You must see** the [Advanced transitioning](/#atp) props.
+**You must see** the [Advanced transitioning](/#advanced-transitioning) props.
 
 ## Animation
 
@@ -156,10 +156,30 @@ For the demonstration, here is a basic **opacity transition** with **animejs** t
               delay: 0,
               opacity: [1, 0],
               duration: 2000,
-            }).finished;
+            });
           }
         }
       ]
     })
 
 > **Note**: VFS is currently only capable of transitioning with direct DOM manipulation. Soon will be available the data object in each lifecycle hook, that contains the element that is called through the :fly-trantision prop, also the data object contains the data of the whole transition.
+
+# Advanced Transitioning
+
+> SOON... 
+
+# Plugin Options
+
+> SOON...
+
+# Lifecycle
+
+> SOON...
+
+# License
+
+MIT License
+
+Copyright © Crawford
+
+[Full license](https://github.com/denyncrawford/vue-flyroutes/blob/master/LICENSE)
