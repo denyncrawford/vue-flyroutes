@@ -1,5 +1,5 @@
 /*!
- * vue-flyroutes v1.0.0 
+ * vue-flyroutes v1.1.0 
  * (c) 2020 Crawford.
  * Released under the undefined License.
  */
@@ -7,13 +7,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _ = _interopDefault(require('lodash'));
-
+//
+//
+//
+//
+//
 //
 var script = {
-  name: "vue-fr",
+  name: "fly-transitions",
   data: function data() {
     return {
       firstLoad: true
@@ -22,32 +23,27 @@ var script = {
   mounted: function mounted() {
     var _this = this;
 
-    var options = this.$vfr.options;
     var transitions = this.$vfr.transitions;
     this.$router.beforeEach(function (to, from, next) {
       var selected;
       if (_this.firstLoad && from.name == null || _this.firstLoad && from.name == "/") return next();
       if (!transitions.length) return next();
-
-      var findFrom = _.filter(transitions, function (tr) {
+      var findFrom = transitions.filter(function (tr) {
         if (tr.from) return from.name === tr.from || tr.from.includes(from.name);
       });
-
-      var findTo = _.filter(findFrom, function (tr) {
+      var findTo = findFrom.filter(function (tr) {
         if (tr.to) return to.name === tr.to || tr.to.includes(to.name);
       });
-
-      var globalAn = _.filter(transitions, function (tr) {
+      var globalAn = transitions.filter(function (tr) {
         return !tr.from && !tr.to;
       });
-
       if (!findTo.length && !globalAn.length) return next();
       if (!findTo.length && globalAn.length) selected = globalAn;
       if (findTo.length && !globalAn.length) selected = findTo;
       if (findTo.length && globalAn.length) selected = findTo;
 
       if (selected[0].leave) {
-        selected[0].leave(null, function () {
+        selected[0].leave(function () {
           return next();
         });
       } else {
@@ -57,19 +53,15 @@ var script = {
     this.$router.afterEach(function (to, from) {
       var selected;
       if (!transitions.length) return;
-
-      var findFrom = _.filter(transitions, function (tr) {
+      var findFrom = transitions.filter(function (tr) {
         if (tr.from) return from.name === tr.from || tr.from.includes(from.name);
       });
-
-      var findTo = _.filter(findFrom, function (tr) {
+      var findTo = findFrom.filter(function (tr) {
         if (tr.to) return to.name === tr.to || tr.to.includes(to.name);
       });
-
-      var globalAn = _.filter(transitions, function (tr) {
+      var globalAn = transitions.filter(function (tr) {
         return !tr.from && !tr.to;
       });
-
       if (!findTo.length && !globalAn.length) return;
       if (!findTo.length && globalAn.length) selected = globalAn;
       if (findTo.length && !globalAn.length) selected = findTo;
@@ -200,7 +192,7 @@ var __vue_staticRenderFns__ = [];
   
 
   
-  var VueFly = normalizeComponent_1(
+  var FlyTransitions = normalizeComponent_1(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__,
     __vue_script__,
@@ -211,13 +203,13 @@ var __vue_staticRenderFns__ = [];
     undefined
   );
 
-var version = '1.0.0';
+var version = '1.1.0';
 
 function install(Vue, opts) {
   if (!opts) opts = {
     transitions: []
   };
-  Vue.component('vue-fr', VueFly);
+  Vue.component('fly-transitions', FlyTransitions);
   Vue.prototype.$vfr = {
     opts: opts,
     transitions: opts.transitions
@@ -241,6 +233,6 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
-exports.VueFly = VueFly;
+exports.FlyTransitions = FlyTransitions;
 exports.default = plugin;
 exports.install = install;

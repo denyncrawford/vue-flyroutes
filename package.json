@@ -1,9 +1,11 @@
 {
   "name": "vue-flyroutes",
   "version": "1.1.0",
+  "author": "Crawford.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "demo": "vue-cli-service demo",
     "docs": "npm run docs:serve",
     "docs:build": "vue-cli-service docs --mode build",
@@ -26,9 +28,13 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "^4.4.6",
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
     "gsap": "^3.3.4",
     "vue": "^2.6.11",
     "vue-cli-plugin-p11n": "~0.4.0",
@@ -42,7 +48,6 @@
     "not dead"
   ],
   "jsdelivr": "dist/vue-flyroutes.umd.min.js",
-  "sideeffects": false,
   "repository": "github:denyncrawford/vue-flyroutes",
-  "author": "Crawford."
+  "sideeffects": false
 }

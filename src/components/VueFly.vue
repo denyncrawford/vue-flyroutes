@@ -13,7 +13,6 @@
       }
     },
     mounted() {
-      var options = this.$vfr.options;
       var transitions = this.$vfr.transitions;
       this.$router.beforeEach((to, from, next) => {
         let selected;

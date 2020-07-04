@@ -6,7 +6,7 @@ import FlyTransitions from './components/VueFly.vue'
 // Install the components
 export function install (Vue, opts) {
   if (!opts) opts = {transitions:[]}
-  Vue.component('fly-transitions', VueFly);
+  Vue.component('fly-transitions', FlyTransitions);
   Vue.prototype.$vfr = {
     opts: opts,
     transitions: opts.transitions

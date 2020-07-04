@@ -16,7 +16,7 @@ function contentAnimation(d) {
 
 
   var headings = document.querySelectorAll('.green-heading-bg');
-  headings.forEach((head, i) => {
+  headings.forEach((head) => {
     head.classList.add('show');
   });
 
