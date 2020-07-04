@@ -3,6 +3,7 @@ node_modules
 public
 src/assets
 src/components/*
+demo
 !src/components/VueFly.vue
 src/router
 src/store

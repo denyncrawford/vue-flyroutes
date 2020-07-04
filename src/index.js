@@ -1,12 +1,12 @@
 
 const version = '__VERSION__'
 
-import VueFly from './components/VueFly.vue'
+import FlyTransitions from './components/VueFly.vue'
 
 // Install the components
 export function install (Vue, opts) {
   if (!opts) opts = {transitions:[]}
-  Vue.component('vue-fr', VueFly);
+  Vue.component('fly-transitions', VueFly);
   Vue.prototype.$vfr = {
     opts: opts,
     transitions: opts.transitions
@@ -15,7 +15,7 @@ export function install (Vue, opts) {
 
 // Expose the components
 export {
-  VueFly,
+  FlyTransitions,
 }
 
 // Plugin

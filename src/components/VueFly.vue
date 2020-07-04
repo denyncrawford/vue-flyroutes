@@ -5,9 +5,8 @@
 </template>
 
 <script>
-  import _ from 'lodash';
   export default {
-    name: "vue-fr",
+    name: "fly-transitions",
     data() {
       return {
         firstLoad: true
@@ -20,13 +19,13 @@
         let selected;
         if (this.firstLoad && from.name == null || this.firstLoad && from.name == "/") return next();
         if (!transitions.length) return next();
-        var findFrom = _.filter(transitions, (tr) => {
+        var findFrom = transitions.filter( tr  => {
           if (tr.from) return from.name === tr.from || tr.from.includes(from.name)
         });
-        var findTo = _.filter(findFrom, function(tr) {
+        var findTo = findFrom.filter( tr => {
           if (tr.to) return to.name === tr.to || tr.to.includes(to.name)
         });
-        var globalAn = _.filter(transitions, (tr) => {
+        var globalAn = transitions.filter( tr => {
           return !tr.from && !tr.to;
         })
         if (!findTo.length && !globalAn.length) return next();
@@ -34,7 +33,7 @@
         if (findTo.length && !globalAn.length) selected = findTo;
         if (findTo.length && globalAn.length) selected = findTo;
         if (selected[0].leave) {
-          selected[0].leave(null, () => {
+          selected[0].leave(() => {
             return next()
           })
         } else {
@@ -44,13 +43,13 @@
       this.$router.afterEach((to, from) => {
         let selected;
         if (!transitions.length) return;
-        var findFrom = _.filter(transitions, (tr) => {
+        var findFrom = transitions.filter( tr  => {
           if (tr.from) return from.name === tr.from || tr.from.includes(from.name)
         });
-        var findTo = _.filter(findFrom, function(tr) {
+        var findTo = findFrom.filter( tr => {
           if (tr.to) return to.name === tr.to || tr.to.includes(to.name)
         });
-        var globalAn = _.filter(transitions, (tr) => {
+        var globalAn = transitions.filter( tr  => {
           return !tr.from && !tr.to;
         })
         if (!findTo.length && !globalAn.length) return;

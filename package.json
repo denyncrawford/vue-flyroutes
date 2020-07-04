@@ -22,20 +22,19 @@
     "src"
   ],
   "dependencies": {
-    "core-js": "^3.6.4",
-    "gsap": "^3.2.6",
-    "lodash": "^4.17.15",
-    "vue-router": "^3.1.6",
-    "vuex": "^3.1.3"
+    "core-js": "^3.6.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
+    "gsap": "^3.3.4",
+    "vue": "^2.6.11",
     "vue-cli-plugin-p11n": "~0.4.0",
+    "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11",
-    "vue": "^2.6.11"
+    "vuex": "^3.5.1"
   },
   "browserslist": [
     "> 1%",
@@ -44,6 +43,6 @@
   ],
   "jsdelivr": "dist/vue-flyroutes.umd.min.js",
   "sideeffects": false,
-  "repository":"github:denyncrawford/vue-flyroutes",
+  "repository": "github:denyncrawford/vue-flyroutes",
   "author": "Crawford."
 }
