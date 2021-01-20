@@ -10,7 +10,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.11.0",
     "core-js": "^3.6.4",
-    "gsap": "^3.2.6",
+    "gsap": "^3.6.0",
     "lodash": "^4.17.15",
     "vue": "^2.6.11",
     "vue-flyroutes": "^1.0.0",
